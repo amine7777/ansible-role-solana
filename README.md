@@ -1,7 +1,7 @@
 Ansible role: solana
 =========
 
-This role helps you to install minikube on your linux machine.
+This role helps you to install solana on your linux machine.
 
 
 |Travis|GitHubActions|Quality|Downloads|Version|
@@ -13,7 +13,7 @@ This role helps you to install minikube on your linux machine.
 Requirements
 ------------
 - Linux machine
-- Ansible 2.10
+- Ansible 2.11
 
 Role Variables
 --------------
@@ -21,17 +21,15 @@ These variables helps to manage solana installation.
 
 You can specify your solana version in this variable.
 ```yaml
-solana_version: 1.6.4
-solana_arch: amd64
-solana_directory_path: /usr/local/bin
+solana_version: v1.8.2
 ```
 This is the url where solana will be downloaded.
 ```yaml
-solana_download_url: 'https://releases.hashicorp.com/solana/{{ solana_version }}/solana_{{ solana_version }}_linux_{{ solana_arch }}.zip'
+solana_install_url: "https://release.solana.com/{{ solana_version }}/install"
 ```
 This is the path where solana binary will be stored.
 ```yaml
-solana_directory_path: /usr/local/bin
+solana_bin_path: ~/.local/share/solana/install/active_release/bin
 ```
 
 Example Playbook
