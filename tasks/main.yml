@@ -1,0 +1,37 @@
+
+# tasks file for solana
+- name: Installing packages
+  package:
+    name: "{{ packages }}"
+    state: present
+  changed_when: false
+    
+- name: Install solana-cli
+  shell: sh -c "$(curl -sSfL {{ solana_install_url }})"
+  become: true
+  changed_when: false
+
+- name: Ensure PATH will be updated
+  lineinfile:
+    path: ~/.bashrc
+    insertafter: EOF
+    line: 'export PATH=$PATH:{{ solana_bin_path }}'
+  changed_when: false
+
+- name: Source the bashrc file 
+  shell: source ~/.bashrc
+  args:
+    executable: /bin/bash
+  changed_when: false
+
+- name: Check if solana-cli is installed
+  shell: '{{ solana_bin_path }}/solana --version'
+  args:
+    executable: /bin/bash
+  register: check_solana
+  changed_when: false
+
+- name: Display solana-cli version
+  debug:
+    msg: '{{ check_solana.stdout_lines }}'
+  changed_when: false
