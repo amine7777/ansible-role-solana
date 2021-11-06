@@ -1,7 +1,7 @@
 Ansible role: solana
 =========
 
-This role helps you to install solana on your linux machine.
+This role helps you to install solana-cli and spl-token on your linux machine.
 
 
 |Travis|GitHubActions|Quality|Downloads|Version|
