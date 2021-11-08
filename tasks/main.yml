@@ -11,23 +11,17 @@
   become: true
   changed_when: false
 
-- name: Ensure PATH will be updated
-  lineinfile:
-    path: ~/.bashrc
-    insertafter: EOF
-    line: 'export PATH=$PATH:{{ solana_bin_path }}'
+- name: mv solana-cli to /usr/bin
+  copy:
+    remote_src: yes
+    src: '{{ solana_bin_path }}/solana'
+    dest: /usr/bin/solana
+    mode: 0755
+  become: true
   changed_when: false
 
-- name: Source the bashrc file 
-  shell: source ~/.bashrc
-  args:
-    executable: /bin/bash
-  changed_when: false
-
-- name: Check if solana-cli is installed
-  shell: '{{ solana_bin_path }}/solana --version'
-  args:
-    executable: /bin/bash
+- name: Get the solana-cli version 
+  command: solana --version
   register: check_solana
   changed_when: false
 
