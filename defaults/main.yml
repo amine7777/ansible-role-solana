@@ -3,6 +3,7 @@
 solana_version: v1.8.2
 solana_install_url: "https://release.solana.com/{{ solana_version }}/install"
 solana_bin_path: ~/.local/share/solana/install/active_release/bin
+
 packages:
   - openssl
   - ca-certificates
