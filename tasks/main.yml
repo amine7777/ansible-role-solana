@@ -14,8 +14,8 @@
 - name: mv solana-cli to /usr/bin
   copy:
     remote_src: yes
-    src: '{{ solana_bin_path }}/solana'
-    dest: /usr/bin/solana
+    src: '{{ solana_bin_path }}/'
+    dest: /usr/bin/
     mode: 0755
   become: true
   changed_when: false
